@@ -1,0 +1,24 @@
+body {
+    font-size: 18px;
+    font-family: Montserrat, sans-serif;
+    background-color: #cfcfcf;
+}
+
+h1 {
+    font-size: 80px;
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 50px;
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+}
+
+
+h3 {
+    font-size: 30px;
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+}
