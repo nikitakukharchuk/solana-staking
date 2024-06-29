@@ -26,7 +26,7 @@ function switchMenu() {
         'flex-col rounded-xl lg:rounded-full items-start': showMenu,
         'items-center': !showMenu
       }">
-      <div class="grid grid-cols-2 lg:grid-cols-3 items-center px-5 py-2 w-full">
+      <div class="flex justify-between items-center px-5 py-2 w-full">
         <div>
           <NuxtLink :to="localePath('/')"><img class="rounded-full w-36 hover:scale-105 transition-all" src="/logo.svg" alt="logo"></NuxtLink>
         </div>
