@@ -1,4 +1,5 @@
 export default defineNuxtConfig({
+  modules: ["@nuxt/ui", "@nuxt/fonts", "@nuxt/icon", '@pinia/nuxt', "@nuxtjs/i18n"],
 
   runtimeConfig: {
     public: {
@@ -20,5 +21,10 @@ export default defineNuxtConfig({
     '~/plugins/utils'
   ],
 
-  modules: ["@nuxt/ui", "@nuxt/fonts", "@nuxt/icon", '@pinia/nuxt'],
+  i18n: {
+    vueI18n: './i18n.config.ts',
+    locales: ['en', 'ru'],
+    defaultLocale: 'en'
+  },
+
 })

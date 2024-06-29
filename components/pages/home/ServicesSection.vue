@@ -1,36 +1,39 @@
 <script lang="ts" setup>
+import type {LocaleMessageValue} from "@intlify/core-base";
+import type {MessagesStructure} from "~/types/i18nType";
 
-import {SERVICES} from "~/constants/static";
+const { messages } = useI18n();
+
+const messValue: LocaleMessageValue<MessagesStructure> = messages.value
+
+const ourTeamLength = computed(() => Object.keys(messValue.en.services.sol_staking).length)
+
 </script>
 
 
 <template>
-  <section class="mx-auto container flex flex-col gap-10">
+  <div class="flex flex-col gap-10">
     <div class="flex flex-col gap-5">
-      <h2>
-        Services
+      <h2 class="text-30-30-h2 lg:text-50-50-h2-lg">
+        {{$t('services.title')}}
       </h2>
-      <p class="text-18-28">
-        On our platform, we offer various staking services for SOL cryptocurrency so that everyone can find the optimal solution for themselves.
+      <p class="text-14-20 lg:text-18-28">
+        {{$t('services.subtitle')}}
       </p>
     </div>
     <div class="flex flex-col gap-5">
-      <h3>SOL Staking</h3>
-      <p class="text-18-28">
-        Staking is the process of locking up SOL cryptocurrency on our platform to support the Solana blockchain network.
-        In return, users receive rewards in the form of new SOL coins. Our services include:
+      <h3 class="text-20-20-h3 lg:text-30-30-h3-lg">{{$t('services.sol_staking_title')}}</h3>
+      <p class="text-14-20 lg:text-18-28">
+        {{$t('services.sol_staking_subtitle')}}
       </p>
       <ul class="list-disc list-inside">
-        <li v-for="item in SERVICES"><span class="font-bold">{{ item.name }}</span> - {{ item.description }}</li>
+        <li v-for="(item) in ourTeamLength" :key="item" class="text-14-20 lg:text-18-28"><span class="font-bold">{{$t(`services.sol_staking.sol_staking_${item}.name`)}}</span> - {{$t(`services.sol_staking.sol_staking_${item}.description`)}}</li>
       </ul>
     </div>
     <div class="flex flex-col gap-5">
-      <h3>Our Mission</h3>
-      <p class="text-18-28">
-        Our mission is to provide everyone with the opportunity to participate in SOL cryptocurrency staking with minimal effort and maximum profit.
-        We strive to make the staking process simple, secure, and accessible to all, regardless of their knowledge and experience in the cryptocurrency sphere.
-        Our goal is to create a community where every participant can earn a stable passive income and contribute to the development of the Solana ecosystem.
+      <p class="text-14-20 lg:text-18-28">
+        {{$t('services.join_us_title')}}
       </p>
     </div>
-  </section>
+  </div>
 </template>

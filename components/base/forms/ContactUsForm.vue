@@ -2,31 +2,32 @@
 import { object, string, type InferType } from 'yup'
 import type { FormSubmitEvent } from '#ui/types'
 import { ref } from 'vue'
-import {useFormStore} from "~/stores/form";
+
+const props = defineProps({
+  isLoading: { type: Boolean, default: false },
+})
 
 const emit = defineEmits(['submit'])
 const config = useRuntimeConfig()
 const form = ref()
 
-const formStore = useFormStore()
 
-const isLoading = computed(() => formStore.isLoading)
 
 const schema = object({
   email: string().email('Invalid email').required('Required'),
-  name: string()
-      .min(2, 'Must be at least 2 characters')
-      .required('Required'),
+  name: string().required('Required')
+      .min(2, 'Must be at least 2 characters'),
+
   message: string()
+      .required('Required')
       .min(2, 'Must be at least 2 characters')
-      .required('Required'),
 })
 
 type Schema = InferType<typeof schema>
 
 const state = ref({
   access_key: config.public.accessKey,
-  subject: "New Submission from Web3Forms",
+  subject: "New Submission from SOLANA",
   name: "",
   email: "",
   message: "",
@@ -46,20 +47,20 @@ function onSubmit (event: FormSubmitEvent<Schema>) {
 
 <template>
   <UForm ref="form" :schema="schema" :state="state" :disabled="isLoading" class="space-y-4" @submit="onSubmit">
-    <UFormGroup label="Name" name="name">
+    <UFormGroup :label="$t('layout.contact_form.name')" name="name">
       <UInput color="green" v-model="state.name" />
     </UFormGroup>
 
-    <UFormGroup label="Email" name="email">
+    <UFormGroup :label="$t('layout.contact_form.email')" name="email">
       <UInput color="green" v-model="state.email" />
     </UFormGroup>
 
-    <UFormGroup label="Message" name="message">
+    <UFormGroup :label="$t('layout.contact_form.message')" name="message">
       <UTextarea color="green" v-model="state.message" />
     </UFormGroup>
 
     <UButton type="submit" :loading="isLoading" :disabled="isLoading">
-      Send message
+      {{ $t('layout.contact_form.send_message') }}
     </UButton>
   </UForm>
 </template>

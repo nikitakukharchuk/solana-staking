@@ -1,23 +1,20 @@
 import { defineStore } from 'pinia'
 import type {contactForm} from "~/types/form";
+import type {AxiosResponse} from "axios";
 
 
 export const useFormStore = defineStore('FormStore', () => {
     const { $api, $utils } = useNuxtApp()
-    const isLoading = ref(false)
     async function handleSubmit(form : contactForm) {
-        isLoading.value = true
         await $api.post('/submit', form)
-            .then((res: any) => {
+            .then((res: AxiosResponse) => {
                 $utils.ssrAlert(res.data.message, "success")
+                return res
             })
             .catch((err) => {
                 $utils.ssrAlert(err.message, "error")
-            })
-            .finally(() => {
-                isLoading.value = false
+                return err
             })
     }
-
-    return { isLoading, handleSubmit }
+    return { handleSubmit }
 })

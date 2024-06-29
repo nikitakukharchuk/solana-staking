@@ -1,22 +1,29 @@
 <script lang="ts" setup>
 import ContactUsForm from "~/components/base/forms/ContactUsForm.vue";
 import {useFormStore} from "~/stores/form";
+import type {contactForm} from "~/types/form";
 
 const { handleSubmit } = useFormStore()
 
-async function onSubmit(event: any) {
+const isLoading = ref(false)
+
+async function onSubmit(event: contactForm) {
+  isLoading.value = true
   await handleSubmit(event)
+      .finally(() => {
+        isLoading.value = false
+      })
 }
 </script>
 
 <template>
-  <section class="mx-auto container text-center">
+  <section class="text-center flex flex-col gap-5">
     <div>
-      <h2>Contact Us</h2>
+      <h2 class="text-30-30-h2 lg:text-50-50-h2-lg">{{$t('services.contact_title')}}</h2>
     </div>
-    <div class="w-2/4 mx-auto">
-      <div class="border border-cool-700 shadow-2xl shadow-cool-700 p-10 bg-black rounded-3xl">
-        <ContactUsForm @submit="onSubmit"/>
+    <div class="flex justify-center px-5">
+      <div class="border border-cool-700 shadow-2xl shadow-cool-700 p-10 bg-black rounded-3xl max-w-[500px] w-full">
+        <ContactUsForm @submit="onSubmit" :is-loading="isLoading"/>
       </div>
     </div>
   </section>

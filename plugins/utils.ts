@@ -1,10 +1,11 @@
+import {useModalsStore} from "~/stores/modals";
 
 type AlertType = 'error' | 'success'
 
 export const ssrAlert =
     (ctx: any) =>
         (text: string = "", type: AlertType = "error") => {
-            const { setAlertModalData } = useAlertsStore()
+            const { setAlertModalData } = useModalsStore()
             const payload = {
                 text,
                 type,

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import {useAlertsStore} from "~/stores/alerts";
 
-const alertsStore = useAlertsStore()
+import {useModalsStore} from "~/stores/modals";
+
+const alertsStore = useModalsStore()
 
 
 const alert = computed(() => alertsStore.alertModal)
