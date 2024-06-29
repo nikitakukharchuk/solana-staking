@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import {useNavigationLinks} from "~/constants/navigation";
 const localePath = useLocalePath()
+const route = computed(() => useRoute().fullPath);
+
 const { setLocale, locale, availableLocales } = useI18n()
 const modalState = useModalsStore()
 const isModalShow = computed(() => modalState.contactModalShow)
@@ -11,6 +13,11 @@ const showMenu = ref(false)
 function switchMenu() {
   showMenu.value = !showMenu.value
 }
+
+watch(route, () => {
+  showMenu.value = false
+});
+
 </script>
 
 

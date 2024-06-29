@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ["@nuxt/ui", "@nuxt/fonts", "@nuxt/icon", '@pinia/nuxt', "@nuxtjs/i18n"],
+
 
   runtimeConfig: {
     public: {
@@ -27,4 +27,5 @@ export default defineNuxtConfig({
     defaultLocale: 'en'
   },
 
+  modules: ["@nuxt/ui", "@nuxt/fonts", "@nuxt/icon", '@pinia/nuxt', "@nuxtjs/i18n"],
 })

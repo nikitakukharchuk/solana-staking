@@ -10,7 +10,7 @@
       <h1 class="text-green-400 w-2/4 text-40-48-h1 lg:text-80-80-h1-lg">
         {{ $t('home.hero.hero_title') }}
       </h1>
-      <p class="w-2/4 text-14-20 lg:text-18-28">{{ $t('home.hero.hero_subtitle') }}</p>
+      <p class="lg:w-2/4 text-14-20 lg:text-18-28">{{ $t('home.hero.hero_subtitle') }}</p>
     </div>
   </section>
 </template>
